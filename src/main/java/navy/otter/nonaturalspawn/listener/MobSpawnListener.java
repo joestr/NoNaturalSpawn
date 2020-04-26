@@ -25,21 +25,13 @@ public class MobSpawnListener implements Listener {
 
     switch (reason) {
       case NATURAL:
-        if (!whitelistMode) {
-          if (entityTypes.contains(entity.getType())) {
-            e.setCancelled(true);
-          }
-        } else {
-          if (!entityTypes.contains(entity.getType())) {
-            e.setCancelled(true);
-          }
+        if (entityTypes.contains(entity.getType())) {
+          e.setCancelled(whitelistMode);
         }
         break;
       case VILLAGE_DEFENSE:
         if (entity instanceof IronGolem && preventIronGolemSpawning) {
           e.setCancelled(true);
-        } else {
-          return;
         }
         break;
     }
